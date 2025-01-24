@@ -1,0 +1,34 @@
+# Python bytecode
+*.pyc
+*.pyo
+__pycache__/
+
+# Environment variables and secrets
+.env
+
+# Django database
+db.sqlite3
+
+# Static and media files (generated files)
+static/
+media/
+
+# Logs
+*.log
+
+# Virtual environments
+venv/
+env/
+myenv/
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# IDE-specific files
+.vscode/
+.idea/
+
+# Migrations (optional, if regenerating is okay)
+*/migrations/*.py
+!*/migrations/__init__.py
