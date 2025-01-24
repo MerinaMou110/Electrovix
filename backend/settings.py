@@ -39,7 +39,9 @@ DEBUG = True
 # CANCEL_URL = config('CANCEL_URL')
 from decouple import config
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
+CSRF_TRUSTED_ORIGINS = ['https://electrovix.onrender.com','https://*.127.0.0.1'] 
+
 STORE_ID = config('STORE_ID')
 STORE_PASS = config('STORE_PASS')
 ISSANDBOX = config('ISSANDBOX', cast=bool)
