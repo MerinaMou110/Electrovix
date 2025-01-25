@@ -11,8 +11,8 @@ __pycache__/
 # db.sqlite3
 
 # Static and media files (generated files)
-static/
-media/
+# static/
+# media/
 
 # Logs
 *.log
