@@ -7,7 +7,8 @@ __pycache__/
 .env
 
 # Django database
-db.sqlite3
+# Uncomment if using SQLite in production (not recommended)
+# db.sqlite3
 
 # Static and media files (generated files)
 static/
@@ -29,6 +30,6 @@ Thumbs.db
 .vscode/
 .idea/
 
-# Migrations (optional, if regenerating is okay)
-*/migrations/*.py
-!*/migrations/__init__.py
+# Migrations
+# DO NOT ignore migration files in production
+!*/migrations/*.py
