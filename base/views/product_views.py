@@ -116,11 +116,14 @@ def getProduct(request,pk):
 def createProduct(request):
     user = request.user
     category = Category.objects.first()  # Assign a default category or handle appropriately
-    brand=Brand.objects.first()
+    brand = Brand.objects.first()
+
     if not category:
         return Response({'detail': 'No category found. Please add a category first.'}, status=400)
     if not brand:
         return Response({'detail': 'No brand name found. Please add a brand first.'}, status=400)
+
+    discount_percentage = request.data.get('discountPercentage', 0.00)  # Default to 0.00 if not provided
 
     product = Product.objects.create(
         user=user,
@@ -129,10 +132,13 @@ def createProduct(request):
         brand=brand,
         countInStock=0,
         category=category,  # Assign a valid Category instance
-        description=''
+        description='',
+        discountPercentage=discount_percentage  # Set the discount percentage
     )
+
     serializer = ProductSerializer(product, many=False)
     return Response(serializer.data)
+
 
 
 from django.shortcuts import get_object_or_404
@@ -154,8 +160,8 @@ def updateProduct(request, pk):
         product = Product.objects.get(_id=pk)
         product.name = data['name']
         product.price = data['price']
-        # product.image = data['image']
-        
+        product.discountPercentage = data.get('discountPercentage', product.discountPercentage)  # Update discount
+
         # Use slug to find the category
         category_slug = data['category']
         brand_slug = data['brand']

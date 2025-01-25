@@ -13,6 +13,7 @@ from sslcommerz_lib import SSLCOMMERZ
 from django.conf import settings
 from decouple import config
 from django.views.decorators.csrf import csrf_exempt
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
@@ -178,16 +179,52 @@ def paymentCancel(request):
 def getMyOrders(request):
     user = request.user
     orders = user.order_set.all()
+
+    # Pagination logic
+    page = request.query_params.get('page', 1)
+    paginator = Paginator(orders, 10)  # Show 10 orders per page
+
+    try:
+        orders = paginator.page(page)
+    except PageNotAnInteger:
+        orders = paginator.page(1)
+    except EmptyPage:
+        orders = paginator.page(paginator.num_pages)
+
     serializer = OrderSerializer(orders, many=True)
-    return Response(serializer.data)
+    return Response({
+        'orders': serializer.data,
+        'page': int(page),
+        'pages': paginator.num_pages,
+        'total': paginator.count,
+    })
+
 
 
 @api_view(['GET'])
 @permission_classes([IsAdminUser])
 def getOrders(request):
     orders = Order.objects.all()
+
+    # Pagination logic
+    page = request.query_params.get('page', 1)
+    paginator = Paginator(orders, 10)  # Show 10 orders per page
+
+    try:
+        orders = paginator.page(page)
+    except PageNotAnInteger:
+        orders = paginator.page(1)
+    except EmptyPage:
+        orders = paginator.page(paginator.num_pages)
+
     serializer = OrderSerializer(orders, many=True)
-    return Response(serializer.data)
+    return Response({
+        'orders': serializer.data,
+        'page': int(page),
+        'pages': paginator.num_pages,
+        'total': paginator.count,
+    })
+
 
 
 @api_view(['GET'])
