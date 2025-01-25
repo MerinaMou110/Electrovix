@@ -40,7 +40,7 @@ DEBUG = True
 from decouple import config
 
 ALLOWED_HOSTS = ["*"]
-CSRF_TRUSTED_ORIGINS = ['https://electrovix.onrender.com','https://*.127.0.0.1'] 
+CSRF_TRUSTED_ORIGINS = ['https://electronic-shopping-website-as07.onrender.com','https://*.127.0.0.1'] 
 
 STORE_ID = config('STORE_ID')
 STORE_PASS = config('STORE_PASS')
@@ -196,6 +196,7 @@ MEDIA_ROOT='static/images'
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 CORS_ORIGIN_WHITELIST = [
     'http://localhost:3000',
+    'https://electrovix.netlify.app/',
      'https://sandbox.sslcommerz.com',           # SSLCommerz sandbox
     'https://securepay.sslcommerz.com',         # SSLCommerz live
 ]
