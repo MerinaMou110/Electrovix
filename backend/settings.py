@@ -190,6 +190,7 @@ STATIC_DIRS=[
 ]
 
 MEDIA_ROOT='static/images'
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
@@ -202,7 +203,9 @@ CORS_ORIGIN_WHITELIST = [
     'https://securepay.sslcommerz.com',         # SSLCommerz live
 ]
 
-FRONTEND_URL = "http://localhost:3000"
+CSRF_TRUSTED_ORIGINS = [
+    'https://electrovix.netlify.app',
+]
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'

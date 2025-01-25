@@ -12,7 +12,7 @@ from datetime import datetime
 from sslcommerz_lib import SSLCOMMERZ
 from django.conf import settings
 from decouple import config
-
+from django.views.decorators.csrf import csrf_exempt
 
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
@@ -138,7 +138,7 @@ def initiatePayment(request):
 
 from django.shortcuts import redirect
 
-
+@csrf_exempt
 @api_view(['POST'])
 def paymentSuccess(request):
     print("Authorization Header:", request.headers.get("Authorization"))
