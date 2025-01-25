@@ -203,9 +203,7 @@ CORS_ORIGIN_WHITELIST = [
     'https://securepay.sslcommerz.com',         # SSLCommerz live
 ]
 
-CSRF_TRUSTED_ORIGINS = [
-    'https://electrovix.netlify.app',
-]
+
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
