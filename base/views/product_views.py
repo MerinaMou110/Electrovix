@@ -14,9 +14,7 @@ from base.models import Category,Brand
 from base.serializers import CategorySerializer,BrandSerializer
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-@api_view(['GET'])
-def home(request):
-    return Response({"message": "Welcome to the API"})
+
 @api_view(['GET'])
 def getProducts(request):
     query = request.query_params.get('keyword', '')
